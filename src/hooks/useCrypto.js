@@ -23,7 +23,6 @@ const SelectLabel = styled.select`
 `;
 
 const useCrypto = (label, stateInitial, cryptoList) => {
-
   const [crypto, setCrypto] = useState(stateInitial);
 
   const handleChange = (e) => {
@@ -35,13 +34,11 @@ const useCrypto = (label, stateInitial, cryptoList) => {
       <Label>{label}</Label>
       <SelectLabel onChange={handleChange} value={crypto}>
         <option value=""> --Select-- </option>
-        {
-          cryptoList.map((crypto) => (
-            <option key={crypto.CoinInfo.Id} value={crypto.CoinInfo.Name}>
-              {crypto.CoinInfo.FullName}
-            </option>
-          ))
-        }
+        {cryptoList.map((crypto) => (
+          <option key={crypto.CoinInfo.Id} value={crypto.CoinInfo.Name}>
+            {crypto.CoinInfo.FullName}
+          </option>
+        ))}
       </SelectLabel>
     </>
   );

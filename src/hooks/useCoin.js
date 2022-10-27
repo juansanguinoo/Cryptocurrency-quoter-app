@@ -1,6 +1,6 @@
-import React from 'react'
-import { useState } from 'react'
-import styled from '@emotion/styled'
+import React from 'react';
+import { useState } from 'react';
+import styled from '@emotion/styled';
 
 const Label = styled.label`
   font-family: 'Bebas Neue', cursive;
@@ -23,12 +23,11 @@ const SelectLabel = styled.select`
 `;
 
 const useCoin = (label, stateInitial, COINS) => {
+  const [coin, setCoin] = useState(stateInitial);
 
-  const [coin, setCoin] = useState(stateInitial)
-
-  const handleChange = e => {
+  const handleChange = (e) => {
     setCoin(e.target.value);
-  }
+  };
 
   const SelectCoin = () => (
     <>
@@ -45,6 +44,6 @@ const useCoin = (label, stateInitial, COINS) => {
   );
 
   return [coin, SelectCoin, setCoin];
-}
+};
 
-export default useCoin
+export default useCoin;
