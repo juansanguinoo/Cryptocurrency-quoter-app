@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import Form from './components/Form';
 import image from './crypto.png';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Container = styled.div`
   max-width: 900px;
@@ -36,6 +38,22 @@ const Heading = styled.h1`
 `;
 
 function App() {
+
+  const [currency, setCurrency] = useState('');
+  const [cryptocurrency, setCryptocurrency] = useState('');
+
+  useEffect(() => {
+
+    const consultAPI = async () => {
+      if (currency === '') return;
+
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${currency}`;
+      const result = await axios.get(url);
+      console.log(result.data.DISPLAY[cryptocurrency][currency]);
+    }
+    consultAPI();
+  }, [currency, cryptocurrency]);
+
   return (
     <Container>
       <div>
@@ -44,7 +62,7 @@ function App() {
       <div>
         <Heading>Trade crypto instantly</Heading>
 
-        <Form />
+        <Form setCurrency={setCurrency} setCryptocurrency={setCryptocurrency} />
       </div>
     </Container>
   );
